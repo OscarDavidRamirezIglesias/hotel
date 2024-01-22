@@ -11,12 +11,12 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "huespedes")
-public class Huesped implements Serializable {
+@Table(name = "empleados")
+public class Empleado implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idHuesped;
+    private Integer IdEmpleado;
 
     private String nombre;
 
@@ -24,9 +24,8 @@ public class Huesped implements Serializable {
 
     private String fechaNacimiento;
 
-    private String nacionalidad;
+    private String ocupacion;
 
     private String telefono;
 
-    private String reserva;
 }
