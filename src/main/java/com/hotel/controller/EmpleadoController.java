@@ -35,7 +35,7 @@ public class EmpleadoController {
 
     @GetMapping("empleado/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public EmpleadoDto showById(@PathVariable Integer id){
+    public Empleado showById(@PathVariable Integer id){
         return empleadoService.findById(id);
     }
 }
