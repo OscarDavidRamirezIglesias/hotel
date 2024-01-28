@@ -1,9 +1,7 @@
 package com.hotel.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 
@@ -11,21 +9,29 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "empleados")
+@ToString
+@Builder
+@Table(name = "empleado")
 public class Empleado implements Serializable {
 
     @Id
+    @Column(name = "id_empleado")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer IdEmpleado;
+    private Integer idEmpleado;
 
+    @Column(name = "nombre")
     private String nombre;
 
+    @Column(name = "apellido")
     private String apellido;
 
+    @Column(name = "fechaNacimiento")
     private String fechaNacimiento;
 
+    @Column(name = "ocupacion")
     private String ocupacion;
 
+    @Column(name = "telefono")
     private String telefono;
 
 }
