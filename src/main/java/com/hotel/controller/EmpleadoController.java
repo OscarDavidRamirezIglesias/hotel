@@ -4,8 +4,13 @@ import com.hotel.model.dto.EmpleadoDto;
 import com.hotel.model.entity.Empleado;
 import com.hotel.service.IEmpleado;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -27,10 +32,17 @@ public class EmpleadoController {
     }
 
     @DeleteMapping("empleado/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Integer id){
-        Empleado empleadoDelete = empleadoService.findById(id);
-        empleadoService.delete(empleadoDelete);
+    public ResponseEntity<?> delete(@PathVariable Integer id){
+        Map<String, Object> response = new HashMap<>();
+        try {
+            Empleado empleadoDelete = empleadoService.findById(id);
+            empleadoService.delete(empleadoDelete);
+            return new ResponseEntity<>(empleadoDelete, HttpStatus.NO_CONTENT);
+        }catch (DataAccessException exDt){
+            response.put("mensaje", exDt.getMessage());
+            response.put("empleado", null);
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("empleado/{id}")

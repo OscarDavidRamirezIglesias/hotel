@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 
 @Data
-@NoArgsConstructor
 @ToString
 @Builder
 public class HuespedDto implements Serializable {

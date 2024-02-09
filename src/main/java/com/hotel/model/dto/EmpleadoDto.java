@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 
 @Data
-@NoArgsConstructor
 @ToString
 @Builder
 public class EmpleadoDto implements Serializable {
